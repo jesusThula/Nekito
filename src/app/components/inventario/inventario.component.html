@@ -1,0 +1,49 @@
+<div class="container">
+
+    <div class="row">
+    <div class="col">
+        <h1>Inventario</h1>
+    </div>
+    <!--BOTONES DE INGRESO DE PRODUCTOS-->
+    <div class="col">
+        <div class="btn-group float-right">
+        <button type="button" class="btn btn-success" data-toggle="modal" >Ingreso</button>
+        <button type="button" class="btn btn-warning" data-toggle="modal" >Egreso</button>
+        <button type="button" class="btn btn-info" data-toggle="modal" >Modificar</button>
+        </div>
+    </div> 
+    </div>
+    
+    <div class="row">
+    <!--HEAD DE TABLA DE INVENTARIO-->
+        <table class="table shadow">
+        <thead class="thead-dark">
+            <tr>
+            <th scope="col">Código</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Descripción</th>
+            <th scope="col">Cantidad (Bulto)</th>
+            <th scope="col">Cantidad (Unidades)</th>
+            <th></th>
+            </tr>
+        </thead>
+    <!--CUERPO DE TABLA DE INVENTARIO-->
+        <tbody>
+            <ng-container *ngFor ="let producto of listaProductos">
+                <tr scope>
+                    <td>{{ producto.id }}</td>
+                    <td>{{ producto.nombre }}</td>
+                    <td>{{ producto.descripcion }}</td>
+                    <td>{{ producto.cantidadBulto }}</td>
+                    <td>{{ producto.cantidadUnidad }}</td>
+                    <td>
+                        <button class="btn btn-info btn-sm">Detalles</button>
+                    </td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
+    
+    
+    </div>
+    </div>
