@@ -44,9 +44,6 @@ export class InventarioComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-  functionA () {
-    console.log("EPA COMO ESTAS")
-  }
+  
 }
 

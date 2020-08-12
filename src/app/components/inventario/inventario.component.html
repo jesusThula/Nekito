@@ -6,8 +6,11 @@
         </div>
         <!--BOTONES DE INGRESO DE PRODUCTOS-->
         <div class="col">
+            <div class="btn-group">
             <button type="button" class="btn btn-success" data-toggle="modal" data-target='#modalIngreso'>Ingreso</button>
-        </div> 
+            <button type="button" class="btn btn-danger" data-toggle="modal" data-target='#modalEgreso'>Egreso</button>
+            </div> 
+        </div>
     </div>
     
     <div class="row">
@@ -48,3 +51,10 @@
     <div class="modal fade" id="modalIngreso" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <app-ingreso></app-ingreso>
     </div>
+
+    <!-- MODAL EGRESO DE PRODUCTO EXISTENTE EN INVENTARIO-->
+    <div class="modal fade" id="modalEgreso" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <app-egreso></app-egreso>>
+    </div>
+
+

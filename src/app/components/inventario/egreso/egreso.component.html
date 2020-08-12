@@ -1,0 +1,65 @@
+<div class="container">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+    
+        <!--Modal de ingreso de producto-->
+    
+        <div class="modal-header bg-danger text-white">
+            <h5 class="modal-title" id="exampleModalLabel">Egreso</h5>
+            <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    
+        <form>
+            <div class="modal-body">
+                <!--Nombre de producto-->
+                <div class="form-group">
+                    <h3>Item</h3>
+                <div class="row">
+                    <div class="col-3">
+                    <label>Nombre</label>
+                    <input required type="text" name="nombre" class="form-control">
+                </div>
+                <div class="col-3">
+                    <!--Label y Select del tipo de producto-->
+                    <label for="exampleFormControlSelect1">Categoría</label>
+                    <select required class="form-control">
+                        <option></option>
+                    </select>
+                </div>
+                <div class="col-3">
+                    <!--Cantidad de producto-->
+                    <label for="exampleInputPassword1">Cantidad Existente</label>
+                    <div class="input-group">
+                        <input required type="number"  name="cantidad" class="form-control">
+                        <select required type="text" placeholder="0" name="unidades" class="form-control">
+                        <option></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <!--Cantidad de producto-->
+                    <label for="exampleInputPassword1">Cantidad a Egresar</label>
+                    <div class="input-group">
+                        <input required type="number"  name="cantidad" class="form-control">
+                        <select required type="text" placeholder="0" name="unidades" class="form-control">
+                        <option></option>
+                        </select>
+                    </div>
+                </div>
+                </div>
+                </div>
+            </div>
+    
+            <!--Footer de Modal con botones de cerrar e ingresar-->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <!-- !f.valid significa cuando el form no sea valido -->
+                <button data-dismiss="modal" type="button" class="btn btn-danger">Egresar</button>
+            </div>
+        </form>
+    
+        </div>
+    </div>
+    </div>
