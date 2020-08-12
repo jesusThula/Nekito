@@ -1,19 +1,13 @@
 <div class="container">
 
     <div class="row">
-    <div class="col">
-        <h1>Inventario</h1>
-        <h2>epa</h2>
-        <h3>epa</h3>
-    </div>
-    <!--BOTONES DE INGRESO DE PRODUCTOS-->
-    <div class="col">
-        <div class="btn-group float-right">
-        <button type="button" class="btn btn-success" data-toggle="modal" >Ingreso</button>
-        <button type="button" class="btn btn-warning" data-toggle="modal" >Egreso</button>
-        <button type="button" class="btn btn-info" data-toggle="modal" >Modificar</button>
+        <div class="col">
+            <h1>Inventario</h1>
         </div>
-    </div> 
+        <!--BOTONES DE INGRESO DE PRODUCTOS-->
+        <div class="col">
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target='#modalIngreso'>Ingreso</button>
+        </div> 
     </div>
     
     <div class="row">
@@ -48,4 +42,9 @@
     
     
     </div>
+    </div>
+
+    <!-- MODAL INGRESO DE PRODUCTO EXISTENTE EN INVENTARIO-->
+    <div class="modal fade" id="modalIngreso" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <app-ingreso></app-ingreso>
     </div>

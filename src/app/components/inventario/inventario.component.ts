@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+
 //IMPORT DE SERVICIOS, MODELOS Y OTROS
 import { Producto } from '../../models/producto.models'
+import { NgForm } from '@angular/forms';
 import { NgForOf } from '@angular/common';
+import { IngresoComponent } from './ingreso/ingreso.component';
 
 @Component({
   selector: 'app-inventario',
@@ -42,5 +45,8 @@ export class InventarioComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  functionA () {
+    console.log("EPA COMO ESTAS")
+  }
 }
 
