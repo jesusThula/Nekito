@@ -121,6 +121,10 @@
               "devServerTarget": "InventarioNekito:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
     }

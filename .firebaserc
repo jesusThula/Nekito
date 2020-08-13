@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "nekito-2020"
+  },
+  "targets": {
+    "nekito-2020": {
+      "hosting": {
+        "InventarioNekito": [
+          "nekito-2020"
+        ]
+      }
+    }
   }
 }

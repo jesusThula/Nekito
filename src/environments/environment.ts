@@ -3,7 +3,17 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebase:{
+    apiKey: "AIzaSyC-peUwAAoTzusV1j59bX_IFeORJb3hA_k",
+    authDomain: "nekito-2020.firebaseapp.com",
+    databaseURL: "https://nekito-2020.firebaseio.com",
+    projectId: "nekito-2020",
+    storageBucket: "nekito-2020.appspot.com",
+    messagingSenderId: "834045395598",
+    appId: "1:834045395598:web:665274d892ca4c5b887fdf",
+    measurementId: "G-0D1C7SF3WM"
+  }
 };
 
 /*

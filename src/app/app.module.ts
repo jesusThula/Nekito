@@ -8,6 +8,14 @@ import { InventarioComponent } from './components/inventario/inventario.componen
 import { IngresoComponent } from './components/inventario/ingreso/ingreso.component';
 import { EgresoComponent } from './components/inventario/egreso/egreso.component';
 
+//IMPORTACIONES DE FIREBASE (BASE DA DATOS Y MARIQUERAS)
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
+import { environment } from 'src/environments/environment';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +26,11 @@ import { EgresoComponent } from './components/inventario/egreso/egreso.component
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
+    AngularFireAnalyticsModule,
+    AngularFirestoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
