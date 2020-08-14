@@ -4,6 +4,7 @@ import { Producto } from '../models/producto.models'
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -26,8 +27,14 @@ export class InventarioService {
     )
 
   }
-
+  
+  //FUNCION OBTENER INVENTARIO
   obtenerInventario() {
     return this.productos;
+  }
+
+  //FUNCION AGREGAR ITEM NUEVO AL INVENTARIO
+  agregarItem(nuevoProducto: Producto) {
+    this.productosColeccion.doc(nuevoProducto.id).set(nuevoProducto);
   }
 }

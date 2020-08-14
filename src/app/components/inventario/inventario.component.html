@@ -7,7 +7,8 @@
         <!--BOTONES DE INGRESO DE PRODUCTOS-->
         <div class="col">
             <div class="btn-group">
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target='#modalIngreso'>Ingreso</button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target='#modalIngreso'>Ingreso producto nuevo</button>
+            <button type="button" class="btn btn-success">Ingreso producto existente</button>
             <button type="button" class="btn btn-danger" data-toggle="modal" data-target='#modalEgreso'>Egreso</button>
             </div> 
         </div>
@@ -18,9 +19,9 @@
         <table class="table shadow">
         <thead class="thead-dark">
             <tr>
-            <th scope="col">Código</th>
             <th scope="col">Nombre</th>
             <th scope="col">Descripción</th>
+            <th scope="col">Categoría</th>
             <th scope="col">Cantidad (Bulto)</th>
             <th scope="col">Cantidad (Unidades)</th>
             <th></th>
@@ -30,11 +31,27 @@
         <tbody>
             <ng-container *ngFor ="let producto of listaProductos">
                 <tr scope>
-                    <td>{{ producto.id }}</td>
                     <td>{{ producto.nombre }}</td>
                     <td>{{ producto.descripcion }}</td>
-                    <td>{{ producto.cantidadBulto }}</td>
-                    <td>{{ producto.cantidadUnidad }}</td>
+                    <td>{{ producto.categoria }}</td>
+                    <td>
+                        <!--CONDICIONAL DE IMPRESION CANTIDAD BULTO-->
+                        <div *ngIf="producto.cantidadBulto != null; else sinBulto">
+                        {{ producto.cantidadBulto }} Bulto(s)
+                        </div>
+                        <ng-template #sinBulto>
+                        N/A
+                        </ng-template>
+                    </td>
+                    <td>
+                        <!--CONDICIONAL DE IMPRESION CANTIDAD UNIDAD-->
+                        <div *ngIf="producto.unidades == 'Bulto(s)'; else Unidad">
+                            {{ producto.cantidadUnidad }} Unidad(es)
+                            </div>
+                            <ng-template #Unidad>
+                            {{ producto.cantidadUnidad }} {{ producto.unidades }}
+                            </ng-template>
+                    </td>
                     <td>
                         <button class="btn btn-info btn-sm">Detalles</button>
                     </td>

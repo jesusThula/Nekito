@@ -6,8 +6,10 @@ export interface Producto {
     cantidadUnidad?: number,
     detalles?: string,
     categoria?:string,
-    unidades?:string
-    
+    unidades?:string,
+    ubicacion?: string,
+    serial?: string,
+    precio?: number
 }
 
 

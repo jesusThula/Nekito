@@ -14,7 +14,7 @@ import { IngresoComponent } from './ingreso/ingreso.component';
 })
 export class InventarioComponent implements OnInit {
 
-  //VARIABLE QUE VA A GUARDAR LA LISTA COMPLETA DEL INVENTARIO EXISTENTE
+  //VARIABLE QUE VA A GUARDAR LA LISTA COMPLETA DE DATOS DE SERVICIOS
   listaProductos: Producto[];
 
   constructor(private servicioInventario: InventarioService) { }
@@ -24,6 +24,4 @@ export class InventarioComponent implements OnInit {
       this.listaProductos = productos.sort((a, b) => (a.nombre > b.nombre) ? 1 : -1);
     })
   }
-  
 }
-

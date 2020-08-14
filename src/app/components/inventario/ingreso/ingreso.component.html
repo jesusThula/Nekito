@@ -4,73 +4,78 @@
 
     <!--Modal de ingreso de producto-->
 
-    <div class="modal-header bg-success text-white">
+    <div class="modal-header bg-primary text-white">
         <h5 class="modal-title" id="exampleModalLabel">Ingreso</h5>
-        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close text-white" data-dismiss="modal" (click)="cerrarModal()" aria-label="Close">
         <span aria-hidden="true">&times;</span>
         </button>
     </div>
 
-    <form>
+    <form #f='ngForm'>
         <div class="modal-body">
             <!--Nombre de producto-->
             <div class="form-group">
                 <h3>Item</h3>
             <div class="row">
                 <div class="col-4">
-                <label>Nombre</label>
-                <input required type="text" name="nombre" class="form-control">
-                <small class="text-danger">Ingrese un nombre.</small>
+                    <label>Nombre</label>
+                    <input #nombre="ngModel" required type="text" name="nombre" [(ngModel)]="nuevoProducto.nombre" class="form-control">
                 </div>
                 <div class="col-3">
-                <!--Label y Select del tipo de producto-->
-                <label for="exampleFormControlSelect1">Categoría</label>
-                <select required class="form-control">
-                    <option></option>
-                </select>
-                <small class="text-danger">Ingrese una categoria.</small>
+                    <!--Label y Select del tipo de producto-->
+                    <label for="exampleFormControlSelect1">Categoría</label>
+                    <select #categoria="ngModel" required class="form-control" name="categoria" [(ngModel)]="nuevoProducto.categoria">
+                        <option *ngFor="let categoria of listaCategorias" value="{{categoria.nombre}}" > {{ categoria.nombre }}</option>
+                    </select>
                 </div>
                 <div class="col-2">
-                <label>Serial</label>
-                <input type="text" name="serial" class="form-control" aria-describedby="emailHelp">
-                </div>
+                    <label>Serial</label>
+                    <input #serial="ngModel" type="text" name="serial" class="form-control" [(ngModel)]="nuevoProducto.serial" aria-describedby="emailHelp">
+                    </div>
                 <div class="col-3">
-                <label>Precio</label>
-                <div class="input-group">
-                <input onkeypress="return event.charCode >= 48" type="number" name="precio" class="form-control">
-                <div class="input-group-append">
-                    <span class="input-group-text" id="basic-addon1">$</span>
-                </div>
-                </div>
+                    <label>Precio</label>
+                    <div class="input-group">
+                    <input onkeypress="return event.charCode >= 48" type="number" #precio="ngModel" name="precio" [(ngModel)]="nuevoProducto.precio" class="form-control">
+                    <div class="input-group-append">
+                        <span class="input-group-text" id="basic-addon1">$</span>
+                    </div>
+                    </div>
                 </div>
             </div>
             </div>
             <div class="form-group">
             <div class="row">
                 <div class="col-4">
-                <!--Cantidad de producto-->
-                <label for="exampleInputPassword1">Cantidad y Unidades</label>
-                <div class="input-group">
-                    <input required type="number"  name="cantidad" class="form-control">
-                    <select required type="text" placeholder="0" name="unidades" class="form-control">
-                    <option></option>
+                    <!--Cantidad de producto-->
+                    <label for="exampleInputPassword1">Cantidad y Unidades</label>
+                    <div class="input-group">
+                        <input #cantidadBulto="ngModel" required type="number"  [(ngModel)]="cantidad" name="cantidad" class="form-control">
+                        <select #unidades="ngModel" required type="text" placeholder="0" [(ngModel)]="nuevoProducto.unidades" name="unidades" class="form-control">
+                        <option *ngFor="let unidad of listaUnidades" value="{{unidad.nombre}}" > {{ unidad.nombre }}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <label>Ubicación en almacén</label>
+                    <select #ubicacion="ngModel" type="text" name="ubicacion" [(ngModel)]="nuevoProducto.ubicacion" class="form-control" aria-describedby="emailHelp">
+                        <option></option>
                     </select>
                 </div>
-                <small class="text-danger">Ingrese una cantidad.<br></small>
-                <small class="text-danger">Ingrese una unidad.</small>
-                </div>
                 <div class="col-4">
-                <label>Ubicación en almacén</label>
-                <select type="text" name="ubicacion" class="form-control" aria-describedby="emailHelp">
-                    <option></option>
-                </select>
+                    <!--Condicion para colocar fecha de vencimiento (Producto o consumible unicamente)-->
+                    <div class="form-group">
+                        <label>Vencimiento</label>
+                        <input class="form-control" name="vencimiento" type="date">
+                    </div>
                 </div>
-                <div class="col-4">
-                <!--Condicion para colocar fecha de vencimiento (Producto o consumible unicamente)-->
-                <div class="form-group">
-                    <label>Vencimiento</label>
-                    <input class="form-control" name="vencimiento" type="date">
-                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <!--Condicion para colocar fecha de vencimiento (Producto o consumible unicamente)-->
+                    <div class="form-group">
+                        <label>Descripción</label>
+                        <input #descipcion="ngModel" required type="text" name="nombre" [(ngModel)]="nuevoProducto.descripcion" class="form-control"> 
+                    </div>
                 </div>
             </div>
             </div>
@@ -79,9 +84,9 @@
 
     <!--Footer de Modal con botones de cerrar e ingresar-->
     <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-secondary" (click)="cerrarModal()" data-dismiss="modal">Cerrar</button>
         <!-- !f.valid significa cuando el form no sea valido -->
-        <button data-dismiss="modal" type="button" class="btn btn-success">Ingresar</button>
+        <button data-dismiss="modal" type="button" (click)="onSubmit()" class="btn btn-success">Ingresar</button>
     </div>
     </form>
 
