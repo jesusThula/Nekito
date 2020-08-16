@@ -8,7 +8,7 @@
         <div class="col">
             <div class="btn-group">
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target='#modalIngreso'>Ingreso producto nuevo</button>
-            <button type="button" class="btn btn-success">Ingreso producto existente</button>
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalReingreso" >Ingreso producto existente</button>
             <button type="button" class="btn btn-danger" data-toggle="modal" data-target='#modalEgreso'>Egreso</button>
             </div> 
         </div>
@@ -16,42 +16,26 @@
     
     <div class="row">
     <!--HEAD DE TABLA DE INVENTARIO-->
-        <table class="table shadow">
+        <table class="table shadow table-hover">
         <thead class="thead-dark">
             <tr>
             <th scope="col">Nombre</th>
             <th scope="col">Descripción</th>
             <th scope="col">Categoría</th>
-            <th scope="col">Cantidad (Bulto)</th>
-            <th scope="col">Cantidad (Unidades)</th>
+            <th scope="col">Cantidad (Principal)</th>
+            <th scope="col">Cantidad (Secundaria)</th>
             <th></th>
             </tr>
         </thead>
     <!--CUERPO DE TABLA DE INVENTARIO-->
         <tbody>
             <ng-container *ngFor ="let producto of listaProductos">
-                <tr scope>
+                <tr class="table-light" scope>
                     <td>{{ producto.nombre }}</td>
                     <td>{{ producto.descripcion }}</td>
                     <td>{{ producto.categoria }}</td>
-                    <td>
-                        <!--CONDICIONAL DE IMPRESION CANTIDAD BULTO-->
-                        <div *ngIf="producto.cantidadBulto != null; else sinBulto">
-                        {{ producto.cantidadBulto }} Bulto(s)
-                        </div>
-                        <ng-template #sinBulto>
-                        N/A
-                        </ng-template>
-                    </td>
-                    <td>
-                        <!--CONDICIONAL DE IMPRESION CANTIDAD UNIDAD-->
-                        <div *ngIf="producto.unidades == 'Bulto(s)'; else Unidad">
-                            {{ producto.cantidadUnidad }} Unidad(es)
-                            </div>
-                            <ng-template #Unidad>
-                            {{ producto.cantidadUnidad }} {{ producto.unidades }}
-                            </ng-template>
-                    </td>
+                    <td>{{ producto.cantidadUnidadPrincipal }} {{ producto.unidadPrincipal }}</td>
+                    <td>{{ producto.cantidadUnidadSecundaria }} {{ producto.unidadSecundaria }}</td>
                     <td>
                         <button class="btn btn-info btn-sm">Detalles</button>
                     </td>
@@ -64,9 +48,14 @@
     </div>
     </div>
 
-    <!-- MODAL INGRESO DE PRODUCTO EXISTENTE EN INVENTARIO-->
+    <!-- MODAL INGRESO DE PRODUCTO NUEVO EN INVENTARIO-->
     <div class="modal fade" id="modalIngreso" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <app-ingreso></app-ingreso>
+    </div>
+    
+    <!-- MODAL INGRESO DE PRODUCTO EXISTENTE EN INVENTARIO-->
+    <div class="modal fade" id="modalReingreso" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <app-reingreso></app-reingreso>>
     </div>
 
     <!-- MODAL EGRESO DE PRODUCTO EXISTENTE EN INVENTARIO-->

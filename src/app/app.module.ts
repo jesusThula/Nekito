@@ -15,6 +15,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
 import { environment } from 'src/environments/environment';
+import { ReingresoComponent } from './components/inventario/reingreso/reingreso.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { environment } from 'src/environments/environment';
     NavbarComponent,
     InventarioComponent,
     IngresoComponent,
-    EgresoComponent
+    EgresoComponent,
+    ReingresoComponent
   ],
   imports: [
     BrowserModule,

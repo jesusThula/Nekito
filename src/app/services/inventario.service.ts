@@ -37,4 +37,9 @@ export class InventarioService {
   agregarItem(nuevoProducto: Producto) {
     this.productosColeccion.doc(nuevoProducto.id).set(nuevoProducto);
   }
+
+  //FUNCION MODIFICAR ITEM EXISTENTE DEL INVENTARIO
+  editarItem(productoEditado: Producto) {
+    return this.productosColeccion.doc(productoEditado.id).update(productoEditado);
+  }
 }

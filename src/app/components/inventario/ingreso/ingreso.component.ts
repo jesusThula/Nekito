@@ -19,7 +19,6 @@ export class IngresoComponent implements OnInit {
   listaCategorias: any[]; 
   listaUnidades: any[];
   listaProductos: Producto[];
-  cantidad: number = 0;
 
 
   //VARIABLE QUE VA A ADQUIRIR LOS PARAMETROS DEL FORM, Y SE AGREGARA EN BASE DE DATOS 
@@ -27,11 +26,13 @@ export class IngresoComponent implements OnInit {
     id: null,
     nombre: null,
     descripcion: null,
-    cantidadBulto: null,
-    cantidadUnidad: null,
+    unidadPrincipal: null,
+    unidadSecundaria:null,
+    ratioUnidades:null,
+    cantidadUnidadPrincipal: null,
+    cantidadUnidadSecundaria: null,
     detalles: null,
     categoria:null,
-    unidades:null,
     ubicacion: null,
     serial: null,
     precio: null
@@ -65,17 +66,8 @@ export class IngresoComponent implements OnInit {
 
     this.nuevoProducto.id = idAUsar;
 
-    //SE CALCULAN LAS UNIDADES DE ACUERDO A LA UNIDAD BASE SELECCIONADA
-    if (this.nuevoProducto.unidades == "Bulto(s)"){
-      this.nuevoProducto.cantidadBulto = this.cantidad;
-      this.nuevoProducto.cantidadUnidad = this.nuevoProducto.cantidadBulto * 12;
-    } else if (this.nuevoProducto.unidades == "Unidad(es)"){
-      this.nuevoProducto.cantidadUnidad = this.cantidad;
-      this.nuevoProducto.cantidadBulto = Math.ceil(this.nuevoProducto.cantidadUnidad / 12);
-    } else {
-      this.nuevoProducto.cantidadUnidad = this.cantidad;
-      this.nuevoProducto.cantidadBulto = null;
-    }
+    //SE IMPRIME LA CANTIDAD DE UNIDAD SECUNDARIA EN BASE AL INPUT DE LA UNIDADES PRINCIPAL
+    this.nuevoProducto.cantidadUnidadSecundaria = (this.nuevoProducto.cantidadUnidadPrincipal / this.nuevoProducto.ratioUnidades);
 
     //SE AGREGA EL PRODUCTO NUEVO A LA BASE DE DATOS
     this.servicioInventario.agregarItem(this.nuevoProducto);
@@ -92,11 +84,13 @@ export class IngresoComponent implements OnInit {
         id: null,
         nombre: null,
         descripcion: null,
-        cantidadBulto: null,
-        cantidadUnidad: null,
+        unidadPrincipal: null,
+        unidadSecundaria:null,
+        ratioUnidades:null,
+        cantidadUnidadPrincipal: null,
+        cantidadUnidadSecundaria: null,
         detalles: null,
         categoria:null,
-        unidades:null,
         ubicacion: null,
         serial: null,
         precio: null

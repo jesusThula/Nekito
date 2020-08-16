@@ -24,4 +24,5 @@ export class InventarioComponent implements OnInit {
       this.listaProductos = productos.sort((a, b) => (a.nombre > b.nombre) ? 1 : -1);
     })
   }
+
 }
