@@ -60,21 +60,32 @@ export class ReingresoComponent implements OnInit {
       let productoReingresar = this.listaProductos[this.listaProductos.findIndex(itemInv => itemInv.id == this.idProductoElegidoReingreso)];
 
       //EVALUA CONDICIONES PARA AGREGAR LAS UNIDADES
-      if(this.unidadSeleccionada == productoReingresar.unidadPrincipal && this.cantidadSeleccionada!=null &&  this.cantidadSeleccionada!=0) {
-        productoReingresar.cantidadUnidadPrincipal = productoReingresar.cantidadUnidadPrincipal + this.cantidadSeleccionada;
-        productoReingresar.cantidadUnidadSecundaria = productoReingresar.cantidadUnidadPrincipal / productoReingresar.ratioUnidades;
-      }
 
-      else if (this.unidadSeleccionada == productoReingresar.unidadSecundaria && this.cantidadSeleccionada!=null &&  this.cantidadSeleccionada!=0){
-        productoReingresar.cantidadUnidadSecundaria = productoReingresar.cantidadUnidadSecundaria + this.cantidadSeleccionada;
-        productoReingresar.cantidadUnidadPrincipal = productoReingresar.cantidadUnidadSecundaria * productoReingresar.ratioUnidades;
-
+      //PRIMERO EVALUA SI EL NUM ES MAYOR A 0
+      if (this.cantidadSeleccionada > 0){
+        if(productoReingresar.unidadSecundaria!=null && 
+          productoReingresar.cantidadUnidadSecundaria!=null && 
+          productoReingresar.ratioUnidades!=null &&
+          productoReingresar.ratioUnidades!=null){
+            //LUEGO, EVALUA SI EXISTE UNA UNIDAD SECUNDARIA Y UN RATIO
+            if(this.unidadSeleccionada == productoReingresar.unidadPrincipal && this.cantidadSeleccionada!=null && this.cantidadSeleccionada!=0) {
+              productoReingresar.cantidadUnidadPrincipal = productoReingresar.cantidadUnidadPrincipal + this.cantidadSeleccionada;
+              productoReingresar.cantidadUnidadSecundaria = productoReingresar.cantidadUnidadPrincipal / productoReingresar.ratioUnidades;
+            }
+            else if (this.unidadSeleccionada == productoReingresar.unidadSecundaria && this.cantidadSeleccionada!=null &&  this.cantidadSeleccionada!=0){
+              productoReingresar.cantidadUnidadSecundaria = productoReingresar.cantidadUnidadSecundaria + this.cantidadSeleccionada;
+              productoReingresar.cantidadUnidadPrincipal = productoReingresar.cantidadUnidadSecundaria * productoReingresar.ratioUnidades;
+            } else {
+              return
+            }
+        } else{
+              productoReingresar.cantidadUnidadPrincipal = productoReingresar.cantidadUnidadPrincipal + this.cantidadSeleccionada;
+        }
+        this.servicioInventario.editarItem(productoReingresar);
       } else {
         return
       }
-
-      this.servicioInventario.editarItem(productoReingresar);
-
+      
     this.form.reset();
   }
 

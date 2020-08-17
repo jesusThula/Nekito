@@ -56,7 +56,9 @@ export class IngresoComponent implements OnInit {
 
   //FUNCION PARA AGREGAR PRODUCTO AL INVENTARIO, SE BORRAN LOS CAMPOS AL FINAL
   onSubmit(){
-
+  
+  //SE COMPRUEBA QUE EL NUMERO A INGRESAR SEA POSITIVO Y MAYOR A 0
+  if (this.nuevoProducto.cantidadUnidadPrincipal > 0){
     var idAUsar = this.generarId().toString();
 
     // REVISA SI EL ID ESTA DISPONIBLE Y DE NO ESTARLO LO CAMBIA
@@ -66,12 +68,18 @@ export class IngresoComponent implements OnInit {
 
     this.nuevoProducto.id = idAUsar;
 
-    //SE IMPRIME LA CANTIDAD DE UNIDAD SECUNDARIA EN BASE AL INPUT DE LA UNIDADES PRINCIPAL
-    this.nuevoProducto.cantidadUnidadSecundaria = (this.nuevoProducto.cantidadUnidadPrincipal / this.nuevoProducto.ratioUnidades);
+    //SE IMPRIME LA CANTIDAD DE UNIDAD SECUNDARIA EN BASE AL INPUT DE LA UNIDADES PRINCIPAL. PERO SE VERIFICA LA SELECCION DE UAN UNIDAD SECUNDARIA
+    if (this.nuevoProducto.unidadSecundaria!=null && this.nuevoProducto.ratioUnidades!=null){
+      this.nuevoProducto.cantidadUnidadSecundaria = (this.nuevoProducto.cantidadUnidadPrincipal / this.nuevoProducto.ratioUnidades);
+    } else {
+      this.nuevoProducto.cantidadUnidadSecundaria = null;
+      this.nuevoProducto.unidadSecundaria = null;
+    }
+
 
     //SE AGREGA EL PRODUCTO NUEVO A LA BASE DE DATOS
     this.servicioInventario.agregarItem(this.nuevoProducto);
-
+  }
     //RESET DE FORMULARIO LUEGO DE AGREGAR PRODUCTO
     this.form.reset();
   

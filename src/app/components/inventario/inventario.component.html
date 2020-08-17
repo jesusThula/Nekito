@@ -35,9 +35,17 @@
                     <td>{{ producto.descripcion }}</td>
                     <td>{{ producto.categoria }}</td>
                     <td>{{ producto.cantidadUnidadPrincipal }} {{ producto.unidadPrincipal }}</td>
-                    <td>{{ producto.cantidadUnidadSecundaria }} {{ producto.unidadSecundaria }}</td>
                     <td>
-                        <button class="btn btn-info btn-sm">Detalles</button>
+                        <div *ngIf="producto.unidadSecundaria != null && producto.cantidadUnidadSecundaria != null; else sinSecundaria">
+                        {{ producto.cantidadUnidadSecundaria }} {{ producto.unidadSecundaria }}
+                        </div>
+                        <!-- NG-TEMPLATE SE USA PARA ENGLOBAR EL BLOQUE ELSE DE UN NGIF -->
+                        <ng-template #sinSecundaria>
+                        N/A
+                        </ng-template>
+                    </td>
+                    <td>
+                        <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalInfoProducto" (click)="recibirInformacion(producto)" >Detalles</button>
                     </td>
                 </tr>
             </ng-container>
@@ -46,6 +54,68 @@
     
     
     </div>
+
+    <!-- MODAL DE INFO -->
+<div class="modal fade" id="modalInfoProducto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header bg-info">
+        <h5 class="modal-title text-white" id="exampleModalLabel"><strong>{{ infoProducto.nombre }}</strong></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        <div class="modal-body">
+        <table class="table table-sm">
+            <tbody>
+                <tr>
+                <th>ID</th>
+                    <td></td>
+                    <td>{{ infoProducto.id }}</td>
+                </tr>
+                <tr *ngIf="infoProducto.serial != null">
+                <th>Serial</th>
+                    <td></td>
+                    <td>{{ infoProducto.serial }}</td>
+                </tr>
+                <tr>
+                <th>Categoría</th>
+                    <td></td>
+                    <td>{{ infoProducto.categoria }}</td>
+                </tr>
+                <tr>
+                <th>Cantidad {{ infoProducto.unidadPrincipal }}</th>
+                    <td></td>
+                    <td>{{ infoProducto.cantidadUnidadPrincipal }}</td>
+                </tr>
+                <tr *ngIf="infoProducto.unidadSecundaria!=null && infoProducto.cantidadUnidadSecundaria!=null" >
+                <th>Cantidad {{ infoProducto.unidadSecundaria }}</th>
+                    <td></td>
+                    <td>{{ infoProducto.cantidadUnidadSecundaria }}</td>
+                </tr>
+                <tr *ngIf="infoProducto.unidadSecundaria!=null && infoProducto.cantidadUnidadSecundaria!=null">
+                <th>Relación</th>
+                    <td></td>
+                    <td>{{ infoProducto.ratioUnidades }} {{ infoProducto.unidadPrincipal }} conforman un(a) {{ infoProducto.unidadSecundaria }}</td>
+                </tr>
+                <tr *ngIf="infoProducto.ubicacion != null">
+                <th>Ubicación</th>
+                    <td></td>
+                    <td>{{ infoProducto.ubicacion }}</td>
+                </tr>
+                <tr >
+                <tr><th></th><td></td><td></td></tr>
+
+            </tbody>
+        </table>
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        </div>
+    </div>
+    </div>
+</div>
+<!-- FIN DEL MODAL INFO -->
     </div>
 
     <!-- MODAL INGRESO DE PRODUCTO NUEVO EN INVENTARIO-->

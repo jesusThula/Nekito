@@ -14,6 +14,23 @@ import { IngresoComponent } from './ingreso/ingreso.component';
 })
 export class InventarioComponent implements OnInit {
 
+  //VARIABLE QUE OBTIENE DATOS DE PRODUCTO (BOTON INFORMACION)
+  infoProducto: Producto = {
+    id: null,
+    nombre: null,
+    descripcion: null,
+    unidadPrincipal: null,
+    unidadSecundaria:null,
+    ratioUnidades:null,
+    cantidadUnidadPrincipal: null,
+    cantidadUnidadSecundaria: null,
+    detalles: null,
+    categoria:null,
+    ubicacion: null,
+    serial: null,
+    precio: null
+}
+
   //VARIABLE QUE VA A GUARDAR LA LISTA COMPLETA DE DATOS DE SERVICIOS
   listaProductos: Producto[];
 
@@ -23,6 +40,11 @@ export class InventarioComponent implements OnInit {
     this.servicioInventario.obtenerInventario().subscribe(productos => {
       this.listaProductos = productos.sort((a, b) => (a.nombre > b.nombre) ? 1 : -1);
     })
+  }
+
+  //FUNCION PARA OBTENER DATOS DE PRODUCTO E IMPRIMIR EN MODAL DE INFO
+  recibirInformacion(item: Producto){
+      this.infoProducto = item;
   }
 
 }
