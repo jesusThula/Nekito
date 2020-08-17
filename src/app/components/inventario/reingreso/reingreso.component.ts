@@ -4,6 +4,7 @@ import { InventarioService } from '../../../services/inventario.service'
 import { UnidadesService } from '../../../services/unidades.service'
 import { Producto } from 'src/app/models/producto.models';
 import { NgForm } from '@angular/forms';
+import { NULL_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-reingreso',
@@ -66,13 +67,13 @@ export class ReingresoComponent implements OnInit {
         if(productoReingresar.unidadSecundaria!=null && 
           productoReingresar.cantidadUnidadSecundaria!=null && 
           productoReingresar.ratioUnidades!=null &&
-          productoReingresar.ratioUnidades!=null){
+          productoReingresar.ratioUnidades!=0){
             //LUEGO, EVALUA SI EXISTE UNA UNIDAD SECUNDARIA Y UN RATIO
-            if(this.unidadSeleccionada == productoReingresar.unidadPrincipal && this.cantidadSeleccionada!=null && this.cantidadSeleccionada!=0) {
+            if(this.unidadSeleccionada == productoReingresar.unidadPrincipal && this.cantidadSeleccionada!=null) {
               productoReingresar.cantidadUnidadPrincipal = productoReingresar.cantidadUnidadPrincipal + this.cantidadSeleccionada;
               productoReingresar.cantidadUnidadSecundaria = productoReingresar.cantidadUnidadPrincipal / productoReingresar.ratioUnidades;
             }
-            else if (this.unidadSeleccionada == productoReingresar.unidadSecundaria && this.cantidadSeleccionada!=null &&  this.cantidadSeleccionada!=0){
+            else if (this.unidadSeleccionada == productoReingresar.unidadSecundaria && this.cantidadSeleccionada!=null){
               productoReingresar.cantidadUnidadSecundaria = productoReingresar.cantidadUnidadSecundaria + this.cantidadSeleccionada;
               productoReingresar.cantidadUnidadPrincipal = productoReingresar.cantidadUnidadSecundaria * productoReingresar.ratioUnidades;
             } else {
