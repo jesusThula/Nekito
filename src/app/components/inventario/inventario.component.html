@@ -4,15 +4,24 @@
         <div class="col">
             <h1>Inventario</h1>
         </div>
+    </div>
+    <div class="row">    
         <!--BOTONES DE INGRESO DE PRODUCTOS-->
         <div class="col">
-            <div class="btn-group">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target='#modalIngreso'>Ingreso producto nuevo</button>
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalReingreso" >Ingreso producto existente</button>
-            <button type="button" class="btn btn-danger" data-toggle="modal" data-target='#modalEgreso'>Egreso</button>
+            <div class="btn-group float-right">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target='#modalIngreso'>
+                <fa-icon [icon]="faPlusCircle"></fa-icon> Producto Nuevo
+            </button>
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalReingreso">
+                <fa-icon [icon]="faPlusCircle"></fa-icon> Producto Existente
+            </button>
+            <button type="button" class="btn btn-danger" data-toggle="modal" data-target='#modalEgreso'>
+                <fa-icon [icon]="faSignOutAlt"></fa-icon> Egreso
+            </button>
             </div> 
         </div>
     </div>
+    <div class="row"> <h2></h2></div>
     
     <div class="row">
     <!--HEAD DE TABLA DE INVENTARIO-->
@@ -45,7 +54,9 @@
                         </ng-template>
                     </td>
                     <td>
-                        <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalInfoProducto" (click)="recibirInformacion(producto)" >Detalles</button>
+                        <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalInfoProducto" (click)="recibirInformacion(producto)" >
+                            <fa-icon [icon]="faInfoCircle"></fa-icon> Detalles
+                        </button>
                     </td>
                 </tr>
             </ng-container>

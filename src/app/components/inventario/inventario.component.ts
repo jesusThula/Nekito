@@ -7,12 +7,22 @@ import { NgForm } from '@angular/forms';
 import { NgForOf } from '@angular/common';
 import { IngresoComponent } from './ingreso/ingreso.component';
 
+//ICONOS FONTAWESOME
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons'
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
+
 @Component({
   selector: 'app-inventario',
   templateUrl: './inventario.component.html',
   styleUrls: ['./inventario.component.css']
 })
 export class InventarioComponent implements OnInit {
+
+  //ICONOS DE FONTAWESOME
+  faPlusCircle = faPlusCircle;
+  faSignOutAlt = faSignOutAlt;
+  faInfoCircle = faInfoCircle;
 
   //VARIABLE QUE OBTIENE DATOS DE PRODUCTO (BOTON INFORMACION)
   infoProducto: Producto = {
