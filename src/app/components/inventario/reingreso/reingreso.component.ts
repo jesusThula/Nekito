@@ -4,6 +4,7 @@ import { InventarioService } from '../../../services/inventario.service'
 import { UnidadesService } from '../../../services/unidades.service'
 import { Producto } from 'src/app/models/producto.models';
 import { NgForm } from '@angular/forms';
+import { IngresoService } from '../../../services/ingresos.service'
 import { NULL_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
@@ -26,7 +27,8 @@ export class ReingresoComponent implements OnInit {
 
   constructor(private servicioCategorias: CategoriasService,
               private servicioUnidades: UnidadesService,
-              private servicioInventario: InventarioService) { }
+              private servicioInventario: InventarioService,
+              private servicioIngreso: IngresoService) { }
 
   ngOnInit(): void {
     this.servicioCategorias.obtenerCategorias().subscribe(categorias => {
@@ -87,6 +89,16 @@ export class ReingresoComponent implements OnInit {
         return
       }
       
+    //SE AGREGA EL PRODUCTO NUEVO A LA BASE DE DATOS DE INGRESOS
+    this.servicioIngreso.agregarIngreso(
+      {
+        idItem: this.idProductoElegidoReingreso,
+        fecha: new Date().toISOString(),
+        cantidad: this.cantidadSeleccionada,
+        modalidad: 'Reingreso',
+      }
+    )
+
     this.form.reset();
   }
 

@@ -1,0 +1,38 @@
+<div class="container">
+
+    <div class="row">
+        <div class="col">
+            <h1>Ingresos</h1>
+        </div>
+    </div>
+
+    <div class="row"> <h2></h2></div>
+
+    <div class="row">
+    <!--HEAD DE TABLA DE INGRESOS-->
+        <table class="table shadow table-hover">
+        <thead class="thead-dark">
+            <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Modalidad</th>
+            <th scope="col">Fecha</th>
+            <th scope="col"></th>
+            <th></th>
+            </tr>
+        </thead>
+    <!--CUERPO DE TABLA DE INGRESOS-->
+        <tbody>
+            <ng-container *ngFor ="let ingreso of ingresos">
+                <tr class="table-light" scope>
+                    <td></td>
+                    <td>{{ ingreso.cantidad }}</td>
+                    <td>{{ ingreso.modalidad }}</td>
+                    <td>{{ ingreso.fecha }}</td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
+    </div>
+
+</div>

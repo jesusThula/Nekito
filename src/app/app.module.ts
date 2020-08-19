@@ -17,6 +17,7 @@ import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
 import { environment } from 'src/environments/environment';
 import { ReingresoComponent } from './components/inventario/reingreso/reingreso.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { IngresosComponent } from './components/ingresos/ingresos.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     InventarioComponent,
     IngresoComponent,
     EgresoComponent,
-    ReingresoComponent
+    ReingresoComponent,
+    IngresosComponent
   ],
   imports: [
     BrowserModule,

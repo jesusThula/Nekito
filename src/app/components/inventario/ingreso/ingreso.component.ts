@@ -4,6 +4,7 @@ import { UnidadesService } from '../../../services/unidades.service'
 import { NgForm } from '@angular/forms';
 import { Producto } from 'src/app/models/producto.models';
 import { InventarioService } from '../../../services/inventario.service'
+import { IngresoService } from '../../../services/ingresos.service'
 
 @Component({
   selector: 'app-ingreso',
@@ -40,7 +41,8 @@ export class IngresoComponent implements OnInit {
 
   constructor(private servicioCategorias: CategoriasService,
               private servicioUnidades: UnidadesService,
-              private servicioInventario: InventarioService) { }
+              private servicioInventario: InventarioService,
+              private servicioIngreso: IngresoService) { }
 
   ngOnInit(): void {
     this.servicioCategorias.obtenerCategorias().subscribe(categorias => {
@@ -77,8 +79,20 @@ export class IngresoComponent implements OnInit {
     }
 
 
-    //SE AGREGA EL PRODUCTO NUEVO A LA BASE DE DATOS
+    //SE AGREGA EL PRODUCTO NUEVO A LA BASE DE DATOS DE INVENTARIO
     this.servicioInventario.agregarItem(this.nuevoProducto);
+
+
+
+    //SE AGREGA EL PRODUCTO NUEVO A LA BASE DE DATOS DE INGRESOS
+    this.servicioIngreso.agregarIngreso(
+      {
+        idItem: this.nuevoProducto.id,
+        fecha: new Date().toISOString(),
+        cantidad: this.nuevoProducto.cantidadUnidadPrincipal,
+        modalidad: 'Ingreso',
+      }
+    )
   }
     //RESET DE FORMULARIO LUEGO DE AGREGAR PRODUCTO
     this.form.reset();
