@@ -37,11 +37,13 @@
                     <label for="exampleInputPassword1">Cantidad Existente</label>
                     <p *ngIf='idProductoElegidoReingreso!=null' >{{ listaProductos[regresarIndice()].cantidadUnidadPrincipal }} {{ listaProductos[regresarIndice()].unidadPrincipal }}</p>
                 </div>
-                <div class="col-3">
+                <div *ngIf='idProductoElegidoReingreso!=null'  class="col-3">
                     <!--CANTIDAD DE PRODUCTO A INGRESAR-->
                     <label for="exampleInputPassword1">Cantidad a Ingresar</label>
                     <div class="input-group">
-                        <input required type="number"  name="cantidad" class="form-control" [(ngModel)]="cantidadSeleccionada" >
+                        <input onkeypress="return event.charCode >= 48" min="1"
+                        required type="number"  name="cantidad" class="form-control" [(ngModel)]="cantidadSeleccionada" >
+                        
                         <select required type="text" placeholder="0" name="unidades" class="form-control" [(ngModel)]="unidadSeleccionada">
                             <ng-container *ngIf='idProductoElegidoReingreso!=null' >
                                 <option value="{{regresarUnidadPrincipal(idProductoElegidoReingreso)}}"> {{regresarUnidadPrincipal(idProductoElegidoReingreso)}} </option>

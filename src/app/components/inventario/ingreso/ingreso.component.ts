@@ -60,7 +60,7 @@ export class IngresoComponent implements OnInit {
   onSubmit(){
   
   //SE COMPRUEBA QUE EL NUMERO A INGRESAR SEA POSITIVO Y MAYOR A 0
-  if (this.nuevoProducto.cantidadUnidadPrincipal > 0){
+
     var idAUsar = this.generarId().toString();
 
     // REVISA SI EL ID ESTA DISPONIBLE Y DE NO ESTARLO LO CAMBIA
@@ -82,8 +82,7 @@ export class IngresoComponent implements OnInit {
     //SE AGREGA EL PRODUCTO NUEVO A LA BASE DE DATOS DE INVENTARIO
     this.servicioInventario.agregarItem(this.nuevoProducto);
 
-
-
+    
     //SE AGREGA EL PRODUCTO NUEVO A LA BASE DE DATOS DE INGRESOS
     this.servicioIngreso.agregarIngreso(
       {
@@ -93,7 +92,6 @@ export class IngresoComponent implements OnInit {
         modalidad: 'Ingreso',
       }
     )
-  }
     //RESET DE FORMULARIO LUEGO DE AGREGAR PRODUCTO
     this.form.reset();
   

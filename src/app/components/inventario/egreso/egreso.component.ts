@@ -61,9 +61,8 @@ export class EgresoComponent implements OnInit {
 
       //EVALUA CONDICIONES PARA RESTAR LAS UNIDADES
 
-      //PRIMERO EVALUA SI EL NUM ES MAYOR A 0, Y SI HAY UNIDADES SUFICIENTES PARA EGRESAR
-      if (this.cantidadSeleccionadaEgreso > 0 &&
-          productoEgresar.cantidadUnidadPrincipal > 0){
+      //PRIMERO EVALUA SI HAY UNIDADES SUFICIENTES PARA EGRESAR
+      if (productoEgresar.cantidadUnidadPrincipal > 0){
 
         if(productoEgresar.unidadSecundaria!=null && 
           productoEgresar.cantidadUnidadSecundaria!=null && 
@@ -87,7 +86,9 @@ export class EgresoComponent implements OnInit {
             } else { return }
 
         } else {
+          if(this.cantidadSeleccionadaEgreso <= productoEgresar.cantidadUnidadPrincipal){
               productoEgresar.cantidadUnidadPrincipal = productoEgresar.cantidadUnidadPrincipal - this.cantidadSeleccionadaEgreso;
+            }
         }
         this.servicioInventario.editarItem(productoEgresar);
       } else { return }

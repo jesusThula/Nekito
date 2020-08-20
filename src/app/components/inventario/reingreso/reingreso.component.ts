@@ -64,8 +64,6 @@ export class ReingresoComponent implements OnInit {
 
       //EVALUA CONDICIONES PARA AGREGAR LAS UNIDADES
 
-      //PRIMERO EVALUA SI EL NUM ES MAYOR A 0
-      if (this.cantidadSeleccionada > 0){
         if(productoReingresar.unidadSecundaria!=null && 
           productoReingresar.cantidadUnidadSecundaria!=null && 
           productoReingresar.ratioUnidades!=null &&
@@ -84,10 +82,9 @@ export class ReingresoComponent implements OnInit {
         } else{
               productoReingresar.cantidadUnidadPrincipal = productoReingresar.cantidadUnidadPrincipal + this.cantidadSeleccionada;
         }
+        
         this.servicioInventario.editarItem(productoReingresar);
-      } else {
-        return
-      }
+
       
     //SE AGREGA EL PRODUCTO NUEVO A LA BASE DE DATOS DE INGRESOS
     this.servicioIngreso.agregarIngreso(
