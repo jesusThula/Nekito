@@ -6,5 +6,6 @@ export interface Ingreso {
     precio?: number,
     idUsuario?: string,
     modalidad?: string, 
+    cantidadInventarioUnidadPrincipal?: number,
 }
 

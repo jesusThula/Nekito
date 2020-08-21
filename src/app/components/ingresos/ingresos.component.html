@@ -6,29 +6,39 @@
         </div>
     </div>
 
-    <div class="row"> <h2></h2></div>
-
     <div class="row">
     <!--HEAD DE TABLA DE INGRESOS-->
         <table class="table shadow table-hover">
-        <thead class="thead-dark">
+        <thead class="thead bg-primary text-white">
             <tr>
             <th scope="col">Nombre</th>
+            <th scope="col">Inventario (Previo)</th>
             <th scope="col">Cantidad</th>
-            <th scope="col">Modalidad</th>
+            <th scope="col">Inventario (Posterior)</th>
             <th scope="col">Fecha</th>
-            <th scope="col"></th>
-            <th></th>
+            <th scope="col">Modalidad</th>
             </tr>
         </thead>
     <!--CUERPO DE TABLA DE INGRESOS-->
         <tbody>
             <ng-container *ngFor ="let ingreso of ingresos">
                 <tr class="table-light" scope>
-                    <td></td>
+                    <td>{{ listaProductos[regresarIndice(ingreso.idItem)].nombre }}</td>
+
+                    <!--EN CASO DE SER INGRESO, EL INMVENTARIO PREVIO ES 0 Y EL POSTERIOR ES EL MISMO-->
+                    <td>
+                        <div *ngIf="ingreso.modalidad != 'Reingreso'; else tipoRein">
+                            N/A
+                        </div> 
+                        <ng-template #tipoRein>
+                            {{ ingreso.cantidadInventarioUnidadPrincipal - ingreso.cantidad }}
+                        </ng-template>
+                        
+                    </td>
                     <td>{{ ingreso.cantidad }}</td>
+                    <td>{{ ingreso.cantidadInventarioUnidadPrincipal }}</td>
+                    <td>{{ ingreso.fecha | date:'short'}}</td>
                     <td>{{ ingreso.modalidad }}</td>
-                    <td>{{ ingreso.fecha }}</td>
                 </tr>
             </ng-container>
         </tbody>

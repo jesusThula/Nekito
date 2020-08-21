@@ -70,8 +70,9 @@ export class IngresoComponent implements OnInit {
 
     this.nuevoProducto.id = idAUsar;
 
+    if (this.nuevoProducto.cantidadUnidadPrincipal>0){
     //SE IMPRIME LA CANTIDAD DE UNIDAD SECUNDARIA EN BASE AL INPUT DE LA UNIDADES PRINCIPAL. PERO SE VERIFICA LA SELECCION DE UAN UNIDAD SECUNDARIA
-    if (this.nuevoProducto.unidadSecundaria!=null && this.nuevoProducto.ratioUnidades!=null){
+    if (this.nuevoProducto.unidadSecundaria!=null && this.nuevoProducto.ratioUnidades!=null && this.nuevoProducto.ratioUnidades > 0){
       this.nuevoProducto.cantidadUnidadSecundaria = (this.nuevoProducto.cantidadUnidadPrincipal / this.nuevoProducto.ratioUnidades);
     } else {
       this.nuevoProducto.cantidadUnidadSecundaria = null;
@@ -90,11 +91,14 @@ export class IngresoComponent implements OnInit {
         fecha: new Date().toISOString(),
         cantidad: this.nuevoProducto.cantidadUnidadPrincipal,
         modalidad: 'Ingreso',
+        cantidadInventarioUnidadPrincipal: this.nuevoProducto.cantidadUnidadPrincipal, 
       }
     )
     //RESET DE FORMULARIO LUEGO DE AGREGAR PRODUCTO
     this.form.reset();
-  
+
+  } else { return }
+
   }
 
   //FUNCION CERRAR MODAL (REINICIO DE CAMPOS)

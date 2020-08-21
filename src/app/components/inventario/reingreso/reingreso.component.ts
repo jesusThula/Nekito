@@ -21,6 +21,7 @@ export class ReingresoComponent implements OnInit {
   listaProductos: Producto[];
   unidadSeleccionada: string;
   cantidadSeleccionada: number;
+  cantidadIngresosLista: number;
 
   //VARIABLES OPERATIVAS DEL EGRESO
   idProductoElegidoReingreso: string = null;
@@ -63,7 +64,7 @@ export class ReingresoComponent implements OnInit {
       let productoReingresar = this.listaProductos[this.listaProductos.findIndex(itemInv => itemInv.id == this.idProductoElegidoReingreso)];
 
       //EVALUA CONDICIONES PARA AGREGAR LAS UNIDADES
-
+      if (this.cantidadSeleccionada > 0){
         if(productoReingresar.unidadSecundaria!=null && 
           productoReingresar.cantidadUnidadSecundaria!=null && 
           productoReingresar.ratioUnidades!=null &&
@@ -72,15 +73,19 @@ export class ReingresoComponent implements OnInit {
             if(this.unidadSeleccionada == productoReingresar.unidadPrincipal && this.cantidadSeleccionada!=null) {
               productoReingresar.cantidadUnidadPrincipal = productoReingresar.cantidadUnidadPrincipal + this.cantidadSeleccionada;
               productoReingresar.cantidadUnidadSecundaria = productoReingresar.cantidadUnidadPrincipal / productoReingresar.ratioUnidades;
+              this.cantidadIngresosLista = this.cantidadSeleccionada;
             }
             else if (this.unidadSeleccionada == productoReingresar.unidadSecundaria && this.cantidadSeleccionada!=null){
               productoReingresar.cantidadUnidadSecundaria = productoReingresar.cantidadUnidadSecundaria + this.cantidadSeleccionada;
               productoReingresar.cantidadUnidadPrincipal = productoReingresar.cantidadUnidadSecundaria * productoReingresar.ratioUnidades;
+              this.cantidadIngresosLista = this.cantidadSeleccionada * productoReingresar.ratioUnidades;
             } else {
               return
             }
         } else{
               productoReingresar.cantidadUnidadPrincipal = productoReingresar.cantidadUnidadPrincipal + this.cantidadSeleccionada;
+              //VERIFICA LA UNIDAD INGRESADA, Y LA IMPRIME EN LA VARIABLE DE HISTORIAL DE INGRESOS
+              this.cantidadIngresosLista = this.cantidadSeleccionada;
         }
         
         this.servicioInventario.editarItem(productoReingresar);
@@ -91,12 +96,16 @@ export class ReingresoComponent implements OnInit {
       {
         idItem: this.idProductoElegidoReingreso,
         fecha: new Date().toISOString(),
-        cantidad: this.cantidadSeleccionada,
+        cantidad: this.cantidadIngresosLista,
         modalidad: 'Reingreso',
+        cantidadInventarioUnidadPrincipal: productoReingresar.cantidadUnidadPrincipal,
       }
     )
 
     this.form.reset();
+
+  } else { return }
+
   }
 
   //FUNCION PARA BORRAR LSO CAMPSO DEL FORMULARIO

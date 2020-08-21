@@ -39,7 +39,7 @@
                         <!--CANTIDAD DE PRODUCTO A EGRESAR-->
                         <label for="exampleInputPassword1">Cantidad a Ingresar</label>
                         <div class="input-group">
-                            <input min=1 onkeypress="return event.charCode >= 49"
+                            <input min=1 onkeypress="return event.charCode >= 48"
                             required type="number"  name="cantidad" class="form-control" [(ngModel)]="cantidadSeleccionadaEgreso" >
                             <select required type="text" placeholder="0" name="unidades" class="form-control" [(ngModel)]="unidadSeleccionadaEgreso">
                                 <ng-container *ngIf='idProductoElegidoEgreso!=null' >
