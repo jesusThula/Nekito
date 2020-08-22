@@ -34,10 +34,28 @@
             <th></th>
             </tr>
         </thead>
+    <!--FILTROS DE TABLA INVENTARIO-->
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col"><input #filtroNombre="ngModel" class="w-75 form-control form-control-sm" ngModel type="text" placeholder="Filtro por nombre"></th>
+                <th scope="col"></th>
+                <th scope="col">
+                    <select #filtroCategoria="ngModel" class="form-control form-control-sm" ngModel name="filtroCategoria">
+                        <option value="">Categoría (Todas)</option>
+                        <option *ngFor="let cat of listaCategorias" [value]="cat.nombre">{{ cat.nombre }}</option>
+                    </select>
+                </th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
     <!--CUERPO DE TABLA DE INVENTARIO-->
         <tbody>
             <ng-container *ngFor ="let producto of listaProductos">
-                <tr class="table-light" scope>
+                <tr *ngIf="(producto.nombre.toLocaleLowerCase().includes(filtroNombre.value.toLocaleLowerCase()) || filtroNombre.value=='') &&
+                            (producto.categoria.includes(filtroCategoria.value) || filtroCategoria.value=='')"
+                class="table-light" scope>
                     <td>{{ producto.nombre }}</td>
                     <td>{{ producto.descripcion }}</td>
                     <td>{{ producto.categoria }}</td>

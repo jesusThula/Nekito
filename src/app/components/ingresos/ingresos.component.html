@@ -11,18 +11,37 @@
         <table class="table shadow table-hover">
         <thead class="thead bg-primary text-white">
             <tr>
-            <th scope="col">Nombre</th>
-            <th scope="col">Inventario (Previo)</th>
-            <th scope="col">Cantidad</th>
-            <th scope="col">Inventario (Posterior)</th>
-            <th scope="col">Fecha</th>
-            <th scope="col">Modalidad</th>
+            <th scope="col-3">Nombre</th>
+            <th scope="col-2">Inventario (Previo)</th>
+            <th scope="col-1">Cantidad</th>
+            <th scope="col-2">Inventario (Posterior)</th>
+            <th scope="col-2">Fecha</th>
+            <th scope="col-3">Modalidad</th>
+            </tr>
+        </thead>
+    <!--FILTROS DE TABLA DE INGRESOS-->
+        <thead class="thead bg-primary text-white">
+            <tr>
+                <th scope="col"><input #filtroNombre="ngModel" class="w-75 form-control form-control-sm" ngModel type="text" placeholder="Filtro por nombre"></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col">                    
+                    <select #filtroModalidad="ngModel" class="form-control form-control-sm" ngModel name="filtroModalidad">
+                        <option value=""> Modalidad (Todas) </option>
+                        <option value="Ingreso"> Ingreso </option>
+                        <option value="Reingreso"> Reingreso </option>
+                    </select>
+                </th>
             </tr>
         </thead>
     <!--CUERPO DE TABLA DE INGRESOS-->
         <tbody>
             <ng-container *ngFor ="let ingreso of ingresos">
-                <tr class="table-light" scope>
+                <tr *ngIf="(regresarNombre(ingreso.idItem).toLocaleLowerCase().includes(filtroNombre.value.toLocaleLowerCase()) || filtroNombre.value=='') &&
+                            (ingreso.modalidad.includes(filtroModalidad.value) || filtroModalidad.value == '')"
+                class="table-light" scope>
                     <td>{{ listaProductos[regresarIndice(ingreso.idItem)].nombre }}</td>
 
                     <!--EN CASO DE SER INGRESO, EL INMVENTARIO PREVIO ES 0 Y EL POSTERIOR ES EL MISMO-->

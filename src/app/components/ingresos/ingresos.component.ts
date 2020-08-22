@@ -34,4 +34,9 @@ export class IngresosComponent implements OnInit {
     return this.listaProductos.findIndex(item => item.id == idItem);
   }
 
+  //BUSCA EL NOMBRE DE LOS ITEMS EN LOS FILTROS DE LA TABLA
+  regresarNombre(id){
+    return this.listaProductos.find(item => item.id == id).nombre;
+  }
+
 }
