@@ -21,18 +21,18 @@
                     <label>Nombre</label>
                     <input #nombre="ngModel" required type="text" name="nombre" [(ngModel)]="nuevoProducto.nombre" class="form-control">
                 </div>
-                <div class="col-3">
+                <div class="col-4">
                     <!--Label y Select del tipo de producto-->
                     <label for="exampleFormControlSelect1">Categoría</label>
                     <select #categoria="ngModel" required class="form-control" name="categoria" [(ngModel)]="nuevoProducto.categoria">
                         <option *ngFor="let categoria of listaCategorias" value="{{categoria.nombre}}" > {{ categoria.nombre }}</option>
                     </select>
                 </div>
-                <div class="col-2">
+                <div class="col-4">
                     <label>Serial</label>
                     <input type="text" name="serial" class="form-control" [(ngModel)]="nuevoProducto.serial" aria-describedby="emailHelp">
-                    </div>
-                <div class="col-3">
+                </div>
+                <!--<div class="col-3">
                     <label>Precio</label>
                     <div class="input-group">
                     <input min=1 onkeypress="return event.charCode >= 49" type="number" name="precio" [(ngModel)]="nuevoProducto.precio" class="form-control">
@@ -40,12 +40,12 @@
                         <span class="input-group-text" id="basic-addon1">$</span>
                     </div>
                     </div>
-                </div>
+                </div>-->
             </div>
             </div>
             <div class="form-group">
             <div class="row">
-                <div class="col-4">
+                <div class="col-6">
                     <!--Cantidad de producto-->
                     <label for="exampleInputPassword1">Cantidad y Unidades Principales</label>
                     <div class="input-group">
@@ -55,7 +55,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-4">
+                <div class="col-6">
                     <!--Cantidad de producto-->
                     <label for="exampleInputPassword1">Relacion y Unidad Secundaria</label>
                     <div class="input-group">
@@ -68,29 +68,28 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-4">
+                <!--<div class="col-4">
                     <label>Ubicación en almacén</label>
                     <select type="text" name="ubicacion" [(ngModel)]="nuevoProducto.ubicacion" class="form-control" aria-describedby="emailHelp">
                         <option></option>
                     </select>
-                </div>
+                </div>-->
 
             </div>
             <div class="row">
-                <div class="col-8">
+                <div class="col">
                     <!--Condicion para colocar fecha de vencimiento (Producto o consumible unicamente)-->
                     <div class="form-group">
                         <label>Descripción</label>
                         <input #descipcion="ngModel" required type="text" name="nombre" [(ngModel)]="nuevoProducto.descripcion" class="form-control"> 
                     </div>
                 </div>
-                <div class="col-4">
-                    <!--Condicion para colocar fecha de vencimiento (Producto o consumible unicamente)-->
+                <!--<div class="col-4">
                     <div class="form-group">
                         <label>Vencimiento</label>
                         <input class="form-control" name="vencimiento" type="date">
                     </div>
-                </div>
+                </div> -->
             </div>
             </div>
 
@@ -111,3 +110,5 @@
     </div>
 </div>
 </div>
+
+

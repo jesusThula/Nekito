@@ -62,7 +62,7 @@
                     <td>{{ producto.cantidadUnidadPrincipal }} {{ producto.unidadPrincipal }}</td>
                     <td>
                         <div *ngIf="producto.unidadSecundaria != null && producto.cantidadUnidadSecundaria != null; else sinSecundaria">
-                        {{ producto.cantidadUnidadSecundaria }} {{ producto.unidadSecundaria }}
+                        {{ producto.cantidadUnidadSecundaria | number : '1.2-2'}} {{ producto.unidadSecundaria }}
                         </div>
                         <!-- NG-TEMPLATE SE USA PARA ENGLOBAR EL BLOQUE ELSE DE UN NGIF -->
                         <ng-template #sinSecundaria>
@@ -70,17 +70,42 @@
                         </ng-template>
                     </td>
                     <td>
-                        <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalInfoProducto" (click)="recibirInformacion(producto)" >
-                            <fa-icon [icon]="faInfoCircle"></fa-icon> Detalles
-                        </button>
+                        <div class="btn-group">
+                            <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalInfoProducto" (click)="recibirInformacion(producto)" >
+                                <fa-icon [icon]="faInfoCircle"></fa-icon> Detalles
+                            </button>
+                            <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modalEliminarProducto" (click)="recibirInformacionEliminar(producto.id, producto.nombre)" >
+                                <fa-icon [icon]="faInfoCircle"></fa-icon> Eliminar
+                            </button>
+                        </div>
                     </td>
                 </tr>
             </ng-container>
         </tbody>
     </table>
-    
-    
     </div>
+
+    <!--MODAL DE ELIMINAR PRODUCTO -->
+    <div id="modalEliminarProducto" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title">Eliminar</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+            <p>¿Estás seguro de eliminar <strong>{{ infoProductoEliminar.nombre }}</strong>? <br> Esta acción no podrá ser revertida.</p>
+            </div>
+            <div class="modal-footer">
+            <button type="button" data-dismiss="modal" class="btn btn-secondary">Cancelar</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="eliminarItem()">Eliminar</button>
+            </div>
+        </div>
+        </div>
+    </div>
+    <!--FIN DEL MODAL DE ELIMINAR PRODUCTO-->
 
     <!-- MODAL DE INFO -->
 <div class="modal fade" id="modalInfoProducto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -118,7 +143,7 @@
                 <tr *ngIf="infoProducto.unidadSecundaria!=null && infoProducto.cantidadUnidadSecundaria!=null" >
                 <th>Cantidad {{ infoProducto.unidadSecundaria }}</th>
                     <td></td>
-                    <td>{{ infoProducto.cantidadUnidadSecundaria }}</td>
+                    <td>{{ infoProducto.cantidadUnidadSecundaria | number : '1.2-2' }}</td>
                 </tr>
                 <tr *ngIf="infoProducto.unidadSecundaria!=null && infoProducto.cantidadUnidadSecundaria!=null">
                 <th>Relación</th>
@@ -147,7 +172,7 @@
 
     <!-- MODAL INGRESO DE PRODUCTO NUEVO EN INVENTARIO-->
     <div class="modal fade" id="modalIngreso" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <app-ingreso></app-ingreso>
+        <app-ingreso (messageEvent)="statusOperacion($event)"></app-ingreso>
     </div>
     
     <!-- MODAL INGRESO DE PRODUCTO EXISTENTE EN INVENTARIO-->
@@ -160,4 +185,25 @@
         <app-egreso></app-egreso>>
     </div>
 
+    <!--ALERTAS DE OPERACION DE INGRESO-->
+    <div *ngIf="isAlert=='Positivo'" class='container' style="width:40%; position: fixed; top: 100px; right: 0">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <h4 class="alert-heading">Operación realizada con éxito!</h4>
+            El Item ha sido ingresado.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
+    
+    <div class='container' style="width:40%; position: fixed; top: 150px; right: 0">
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <h4 class="alert-heading">Operación fallida!</h4>
+            El Item no ha sido ingresado.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
+    
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { CategoriasService } from '../../../services/categorias.service'
 import { UnidadesService } from '../../../services/unidades.service'
 import { NgForm } from '@angular/forms';
@@ -21,7 +21,11 @@ export class IngresoComponent implements OnInit {
   listaUnidades: any[];
   listaProductos: Producto[];
 
+  //VARIABLES DE ALERTAS DE OPERACION
+  isAlert: string = null;
+  @Output () messageEvent = new EventEmitter<string>();
 
+  
   //VARIABLE QUE VA A ADQUIRIR LOS PARAMETROS DEL FORM, Y SE AGREGARA EN BASE DE DATOS 
   nuevoProducto: Producto = {
     id: null,
@@ -96,9 +100,20 @@ export class IngresoComponent implements OnInit {
     )
     //RESET DE FORMULARIO LUEGO DE AGREGAR PRODUCTO
     this.form.reset();
+    
+    //ALERTA POSITIVA DE INGRESO
+    this.isAlert='Positivo';
 
   } else { return }
 
+  //ALERTA NEGATIVA DE INGRESO
+  this.isAlert = 'Negativo';
+
+  }
+
+  //FUNCION QUE ENVIA DATOS DE ALERTAS DE INGRESO 
+  sendMessage(){
+    this.messageEvent.emit(this.isAlert);
   }
 
   //FUNCION CERRAR MODAL (REINICIO DE CAMPOS)

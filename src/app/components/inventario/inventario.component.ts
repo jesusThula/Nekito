@@ -42,6 +42,16 @@ export class InventarioComponent implements OnInit {
     precio: null
 }
 
+ //VARIABLE QUE OBTIENE DATOS DE PRODUCTO A ELIMINAR (BOTON ELIMINAR)
+  infoProductoEliminar = {
+    id: null,
+    nombre: null,
+  }
+
+
+  isAlert:string = null;
+
+
   //VARIABLE QUE VA A GUARDAR LA LISTA COMPLETA DE DATOS DE SERVICIOS
   listaProductos: Producto[];
   listaCategorias: any[];
@@ -60,7 +70,24 @@ export class InventarioComponent implements OnInit {
 
   //FUNCION PARA OBTENER DATOS DE PRODUCTO E IMPRIMIR EN MODAL DE INFO
   recibirInformacion(item: Producto){
-      this.infoProducto = item;
+    this.infoProducto = item;
   }
+
+  //FUNCION PARA OBTENER DATOS DE PRODUCTO PARA ELIMINARLO
+  recibirInformacionEliminar(idEliminar, nombreEliminar){
+      this.infoProductoEliminar.id = idEliminar;
+      this.infoProductoEliminar.nombre= nombreEliminar;
+  }
+
+  //FUNCION PARA ELIMINAR PRODUCTO DE BASE DE DATOS 
+  eliminarItem(){
+    this.servicioInventario.eliminarItem(this.infoProductoEliminar.id);
+  }
+
+
+  statusOperacion($event){
+    this.isAlert=$event;
+  }
+
 
 }

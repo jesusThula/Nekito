@@ -42,4 +42,9 @@ export class InventarioService {
   editarItem(productoEditado: Producto) {
     return this.productosColeccion.doc(productoEditado.id).update(productoEditado);
   }
+
+   //FUNCION ELIMINAR ITEM EXISTENTE DEL INVENTARIO
+  eliminarItem(idProductoEliminar: string){
+    return this.productosColeccion.doc(idProductoEliminar).delete();
+  }
 }
