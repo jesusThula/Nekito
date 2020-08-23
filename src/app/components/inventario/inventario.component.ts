@@ -9,9 +9,10 @@ import { NgForOf } from '@angular/common';
 import { IngresoComponent } from './ingreso/ingreso.component';
 
 //ICONOS FONTAWESOME
-import { faPlusCircle } from '@fortawesome/free-solid-svg-icons'
-import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
-import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import { faEraser } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-inventario',
@@ -24,6 +25,7 @@ export class InventarioComponent implements OnInit {
   faPlusCircle = faPlusCircle;
   faSignOutAlt = faSignOutAlt;
   faInfoCircle = faInfoCircle;
+  faEraser = faEraser;
 
   //VARIABLE QUE OBTIENE DATOS DE PRODUCTO (BOTON INFORMACION)
   infoProducto: Producto = {

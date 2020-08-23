@@ -4,6 +4,8 @@ import { UnidadesService } from '../../../services/unidades.service';
 import { InventarioService } from '../../../services/inventario.service';
 import { Producto } from 'src/app/models/producto.models';
 import { NgForm } from '@angular/forms';
+import { EgresoService } from '../../../services/egresos.service';
+import { Egreso } from 'src/app/models/egreso.models';
 
 @Component({
   selector: 'app-egreso',
@@ -24,7 +26,8 @@ export class EgresoComponent implements OnInit {
 
   constructor(private servicioCategorias: CategoriasService,
               private servicioUnidades: UnidadesService,
-              private servicioInventario: InventarioService) { }
+              private servicioInventario: InventarioService,
+              private servicioEgresos: EgresoService,) { }
 
   ngOnInit(): void {
     this.servicioCategorias.obtenerCategorias().subscribe(categorias => {
@@ -91,6 +94,15 @@ export class EgresoComponent implements OnInit {
             }
         }
         this.servicioInventario.editarItem(productoEgresar);
+
+        //SE IMPRIMEN LOS DATOS EN LA BD DE EGRESOS
+        this.servicioEgresos.agregarEgreso({
+          nombre: productoEgresar.nombre,
+          idItem: productoEgresar.id,
+          fecha: new Date().toISOString(),
+          cantidad: this.cantidadSeleccionadaEgreso,
+          cantidadInventarioUnidadPrincipal: productoEgresar.cantidadUnidadPrincipal, 
+        })
 
       } else { return }
       

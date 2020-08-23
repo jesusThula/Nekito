@@ -1,0 +1,47 @@
+<div class="container">
+
+    <div class="row">
+        <div class="col">
+            <h1>Egresos</h1>
+        </div>
+    </div>
+
+    <div class="row">
+    <!--HEAD DE TABLA DE EGRESOS-->
+        <table class="table shadow table-hover">
+        <thead class="thead bg-danger text-white">
+            <tr>
+            <th scope="col-3">Nombre</th>
+            <th scope="col-2">Inventario (Previo)</th>
+            <th scope="col-1">Cantidad</th>
+            <th scope="col-2">Inventario (Posterior)</th>
+            <th scope="col-2">Fecha</th>
+            </tr>
+        </thead>
+    <!--FILTROS DE TABLA DE EGRESOS-->
+        <thead class="thead bg-danger text-white">
+            <tr>
+                <th scope="col"><input #filtroNombre="ngModel" class="w-75 form-control form-control-sm" ngModel type="text" placeholder="Filtro por nombre"></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+    <!--CUERPO DE TABLA DE EGRESOS-->
+        <tbody>
+            <ng-container *ngFor ="let egreso of egresos">
+                <tr *ngIf="(egreso.nombre.toLocaleLowerCase().includes(filtroNombre.value.toLocaleLowerCase()) || filtroNombre.value=='')"
+                class="table-light" scope>
+                    <td>{{ egreso.nombre }}</td>
+                    <td>{{ egreso.cantidadInventarioUnidadPrincipal + egreso.cantidad }}</td>
+                    <td>{{ egreso.cantidad }}</td>
+                    <td>{{ egreso.cantidadInventarioUnidadPrincipal }}</td>
+                    <td>{{ egreso.fecha | date:'short'}}</td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
+    </div>
+
+</div>

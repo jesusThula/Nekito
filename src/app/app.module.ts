@@ -18,6 +18,7 @@ import { environment } from 'src/environments/environment';
 import { ReingresoComponent } from './components/inventario/reingreso/reingreso.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { IngresosComponent } from './components/ingresos/ingresos.component';
+import { EgresosComponent } from './components/egresos/egresos.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { IngresosComponent } from './components/ingresos/ingresos.component';
     IngresoComponent,
     EgresoComponent,
     ReingresoComponent,
-    IngresosComponent
+    IngresosComponent,
+    EgresosComponent
   ],
   imports: [
     BrowserModule,
