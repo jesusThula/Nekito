@@ -91,6 +91,7 @@ export class IngresoComponent implements OnInit {
     //SE AGREGA EL PRODUCTO NUEVO A LA BASE DE DATOS DE INGRESOS
     this.servicioIngreso.agregarIngreso(
       {
+        nombre: this.nuevoProducto.nombre,
         idItem: this.nuevoProducto.id,
         fecha: new Date().toISOString(),
         cantidad: this.nuevoProducto.cantidadUnidadPrincipal,

@@ -40,7 +40,10 @@
                         <label for="exampleInputPassword1">Cantidad a Ingresar</label>
                         <div class="input-group">
                             <input min=1 onkeypress="return event.charCode >= 48"
-                            required type="number"  name="cantidad" class="form-control" [(ngModel)]="cantidadSeleccionadaEgreso" >
+                            required type="number"  name="cantidad" class="form-control"
+                            [(ngModel)]="cantidadSeleccionadaEgreso"
+                            [max]='listaProductos[regresarIndice()].cantidadUnidadPrincipal'>
+                            
                             <select required type="text" placeholder="0" name="unidades" class="form-control" [(ngModel)]="unidadSeleccionadaEgreso">
                                 <ng-container *ngIf='idProductoElegidoEgreso!=null' >
                                     <option value="{{regresarUnidadPrincipal(idProductoElegidoEgreso)}}"> {{regresarUnidadPrincipal(idProductoElegidoEgreso)}} </option>
@@ -57,7 +60,10 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)='borrarForm()' >Cerrar</button>
                 <!-- !f.valid significa cuando el form no sea valido -->
-                <button data-dismiss="modal" type="button" class="btn btn-danger" (click)="egresarProducto()" >Egresar</button>
+                <button data-dismiss="modal" type="button" class="btn btn-danger" 
+                (click)="egresarProducto()">
+                Egresar
+                </button>
             </div>
         </form>
     

@@ -97,6 +97,7 @@ export class EgresoComponent implements OnInit {
     this.form.reset();
   }
 
+
   //FUNCION PARA BORRAR LOS CAMPSO DEL FORMULARIO
   borrarForm() {
     this.form.reset();

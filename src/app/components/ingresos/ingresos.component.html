@@ -39,10 +39,10 @@
     <!--CUERPO DE TABLA DE INGRESOS-->
         <tbody>
             <ng-container *ngFor ="let ingreso of ingresos">
-                <tr *ngIf="(regresarNombre(ingreso.idItem).toLocaleLowerCase().includes(filtroNombre.value.toLocaleLowerCase()) || filtroNombre.value=='') &&
+                <tr *ngIf="(ingreso.nombre.toLocaleLowerCase().includes(filtroNombre.value.toLocaleLowerCase()) || filtroNombre.value=='') &&
                             (ingreso.modalidad.includes(filtroModalidad.value) || filtroModalidad.value == '')"
                 class="table-light" scope>
-                    <td>{{ listaProductos[regresarIndice(ingreso.idItem)].nombre }}</td>
+                    <td>{{ ingreso.nombre }}</td>
 
                     <!--EN CASO DE SER INGRESO, EL INMVENTARIO PREVIO ES 0 Y EL POSTERIOR ES EL MISMO-->
                     <td>

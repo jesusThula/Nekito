@@ -22,6 +22,7 @@ export class ReingresoComponent implements OnInit {
   unidadSeleccionada: string;
   cantidadSeleccionada: number;
   cantidadIngresosLista: number;
+  nombreProductoReingreso: string;
 
   //VARIABLES OPERATIVAS DEL EGRESO
   idProductoElegidoReingreso: string = null;
@@ -90,10 +91,13 @@ export class ReingresoComponent implements OnInit {
         
         this.servicioInventario.editarItem(productoReingresar);
 
+        this.nombreProductoReingreso = productoReingresar.nombre;
+
       
     //SE AGREGA EL PRODUCTO NUEVO A LA BASE DE DATOS DE INGRESOS
     this.servicioIngreso.agregarIngreso(
       {
+        nombre: this.nombreProductoReingreso,
         idItem: this.idProductoElegidoReingreso,
         fecha: new Date().toISOString(),
         cantidad: this.cantidadIngresosLista,
