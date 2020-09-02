@@ -19,6 +19,7 @@ import { ReingresoComponent } from './components/inventario/reingreso/reingreso.
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { IngresosComponent } from './components/ingresos/ingresos.component';
 import { EgresosComponent } from './components/egresos/egresos.component';
+import { ModificarComponent } from './components/inventario/modificar/modificar.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { EgresosComponent } from './components/egresos/egresos.component';
     EgresoComponent,
     ReingresoComponent,
     IngresosComponent,
-    EgresosComponent
+    EgresosComponent,
+    ModificarComponent
   ],
   imports: [
     BrowserModule,

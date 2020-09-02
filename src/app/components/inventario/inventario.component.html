@@ -8,16 +8,21 @@
         <!--BOTONES DE INGRESO DE PRODUCTOS-->
         <div class="col">
             <div class="btn-group float-right">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target='#modalIngreso'>
-                <fa-icon [icon]="faPlusCircle"></fa-icon> Producto Nuevo
-            </button>
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalReingreso">
-                <fa-icon [icon]="faPlusCircle"></fa-icon> Producto Existente
-            </button>
-            <button type="button" class="btn btn-danger" data-toggle="modal" data-target='#modalEgreso'>
-                <fa-icon [icon]="faSignOutAlt"></fa-icon> Egreso
-            </button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target='#modalIngreso'>
+                    <fa-icon [icon]="faPlusCircle"></fa-icon> Producto Nuevo
+                </button>
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalReingreso">
+                    <fa-icon [icon]="faPlusCircle"></fa-icon> Producto Existente
+                </button>
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target='#modalEgreso'>
+                    <fa-icon [icon]="faSignOutAlt"></fa-icon> Egreso
+                </button>
             </div> 
+        </div>
+        <div class="btn-group">
+            <button type="button" class="btn btn-info" data-toggle="modal" data-target='#modalModificar'>
+                Modificar
+            </button>
         </div>
     </div>
     
@@ -177,12 +182,17 @@
     
     <!-- MODAL INGRESO DE PRODUCTO EXISTENTE EN INVENTARIO-->
     <div class="modal fade" id="modalReingreso" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <app-reingreso></app-reingreso>>
+        <app-reingreso></app-reingreso>
     </div>
 
     <!-- MODAL EGRESO DE PRODUCTO EXISTENTE EN INVENTARIO-->
     <div class="modal fade" id="modalEgreso" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <app-egreso></app-egreso>>
+        <app-egreso></app-egreso>
+    </div>
+
+    <!-- MODAL MODIFICAR PRODUCTO EXISTENTE EN INVENTARIO-->
+    <div class="modal fade" id="modalModificar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <app-modificar></app-modificar>
     </div>
 
     <!--ALERTAS DE OPERACION DE INGRESO-->
