@@ -91,5 +91,9 @@ export class InventarioComponent implements OnInit {
     this.isAlert=$event;
   }
 
+  volverEstadoAlerta(){
+    this.isAlert = null;
+  }
+
 
 }

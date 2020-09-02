@@ -105,11 +105,13 @@ export class IngresoComponent implements OnInit {
     //ALERTA POSITIVA DE INGRESO
     this.isAlert='Positivo';
 
-  } else { return }
+  } else { 
 
-  //ALERTA NEGATIVA DE INGRESO
+ //ALERTA NEGATIVA DE INGRESO
   this.isAlert = 'Negativo';
+  }
 
+  this.sendMessage();
   }
 
   //FUNCION QUE ENVIA DATOS DE ALERTAS DE INGRESO 

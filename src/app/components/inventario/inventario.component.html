@@ -186,21 +186,21 @@
     </div>
 
     <!--ALERTAS DE OPERACION DE INGRESO-->
-    <div *ngIf="isAlert=='Positivo'" class='container' style="width:40%; position: fixed; top: 100px; right: 0">
+    <div *ngIf="isAlert=='Positivo'" class='container' style="width:40%; position: fixed; top: 150px; right: 0">
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             <h4 class="alert-heading">Operación realizada con éxito!</h4>
             El Item ha sido ingresado.
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)='volverEstadoAlerta()' >
             <span aria-hidden="true">&times;</span>
             </button>
         </div>
     </div>
     
-    <div class='container' style="width:40%; position: fixed; top: 150px; right: 0">
+    <div *ngIf="isAlert=='Negativo'" class='container' style="width:40%; position: fixed; top: 150px; right: 0">
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
             <h4 class="alert-heading">Operación fallida!</h4>
             El Item no ha sido ingresado.
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)='volverEstadoAlerta()'>
             <span aria-hidden="true">&times;</span>
             </button>
         </div>
