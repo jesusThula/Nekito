@@ -7,7 +7,6 @@ export interface Producto {
     ratioUnidades?:number,
     cantidadUnidadPrincipal?: number,
     cantidadUnidadSecundaria?: number,
-    detalles?: string,
     categoria?:string,
     ubicacion?: string,
     serial?: string,

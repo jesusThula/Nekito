@@ -4,9 +4,9 @@
     
         <!--MODAL DE EGRESO DE PRODUCTO-->
     
-        <div class="modal-header bg-danger text-white">
+        <div class="modal-header bg-warning">
             <h5 class="modal-title" id="exampleModalLabel">Egreso</h5>
-            <button type="button" class="close text-white" data-dismiss="modal" (click)='borrarForm()' aria-label="Close">
+            <button type="button" class="close" data-dismiss="modal" (click)='borrarForm()' aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
         </div>
@@ -60,7 +60,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)='borrarForm()' >Cerrar</button>
                 <!-- !f.valid significa cuando el form no sea valido -->
-                <button data-dismiss="modal" type="button" class="btn btn-danger" 
+                <button data-dismiss="modal" type="button" class="btn btn-warning" 
                 (click)="egresarProducto()">
                 Egresar
                 </button>

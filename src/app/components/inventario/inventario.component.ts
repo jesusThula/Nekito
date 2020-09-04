@@ -7,6 +7,7 @@ import { CategoriasService } from '../../services/categorias.service';
 import { NgForm } from '@angular/forms';
 import { NgForOf } from '@angular/common';
 import { IngresoComponent } from './ingreso/ingreso.component';
+import * as html2pdf from 'html2pdf.js';
 
 //ICONOS FONTAWESOME
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
@@ -37,7 +38,6 @@ export class InventarioComponent implements OnInit {
     ratioUnidades:null,
     cantidadUnidadPrincipal: null,
     cantidadUnidadSecundaria: null,
-    detalles: null,
     categoria:null,
     ubicacion: null,
     serial: null,
@@ -56,8 +56,8 @@ export class InventarioComponent implements OnInit {
 
   //VARIABLE QUE VA A GUARDAR LA LISTA COMPLETA DE DATOS DE SERVICIOS
   listaProductos: Producto[];
-  listaCategorias: any[];
-
+  listaCategorias: any[];  
+  oculto: boolean = true;
   constructor(private servicioInventario: InventarioService,
               private servicioCategoria: CategoriasService) { }
 
@@ -93,6 +93,27 @@ export class InventarioComponent implements OnInit {
 
   volverEstadoAlerta(){
     this.isAlert = null;
+  }
+
+  //FUNCION PARA DESCARGAR PDF DE INVENTARIO
+  descargarPDF() {
+    this.oculto = false;
+    const opciones = {
+      margin: 1,
+      filename: 'Inventario.pdf',
+      image: {type: 'jpeg', quality: 1},
+      html2canvas: {},
+      jsPDF: {unit: 'cm', format: 'letter', orientation: 'portrait'}
+    };
+
+    const contenido: Element = document.getElementById('elemento-a-exportar');
+
+    html2pdf()
+      .from(contenido)
+      .set(opciones)
+      .save();
+
+      this.oculto = true;
   }
 
 

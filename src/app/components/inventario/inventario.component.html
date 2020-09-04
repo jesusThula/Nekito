@@ -7,22 +7,25 @@
         
         <!--BOTONES DE INGRESO DE PRODUCTOS-->
         <div class="col">
-            <div class="btn-group float-right">
+            <div class="btn-group float-left">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target='#modalIngreso'>
                     <fa-icon [icon]="faPlusCircle"></fa-icon> Producto Nuevo
                 </button>
                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalReingreso">
                     <fa-icon [icon]="faPlusCircle"></fa-icon> Producto Existente
                 </button>
-                <button type="button" class="btn btn-danger" data-toggle="modal" data-target='#modalEgreso'>
+                <button type="button" class="btn btn-warning" data-toggle="modal" data-target='#modalEgreso'>
                     <fa-icon [icon]="faSignOutAlt"></fa-icon> Egreso
                 </button>
             </div> 
-        </div>
-        <div class="btn-group">
-            <button type="button" class="btn btn-info" data-toggle="modal" data-target='#modalModificar'>
-                Modificar
-            </button>
+            <div class="btn-group float-right">
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target='#modalModificar'>
+                    Modificar
+                </button>
+                <button type="button" class="btn btn-warning" data-toggle="modal" data-target='#pdfInventario'>
+                    Exportar PDF
+                </button>
+            </div>
         </div>
     </div>
     
@@ -32,8 +35,8 @@
         <thead class="thead-dark">
             <tr>
             <th scope="col">Nombre</th>
-            <th scope="col">Descripción</th>
             <th scope="col">Categoría</th>
+            <th scope="col">Descripción</th>
             <th scope="col">Cantidad (Principal)</th>
             <th scope="col">Cantidad (Secundaria)</th>
             <th></th>
@@ -43,13 +46,13 @@
         <thead class="thead-dark">
             <tr>
                 <th scope="col"><input #filtroNombre="ngModel" class="w-75 form-control form-control-sm" ngModel type="text" placeholder="Filtro por nombre"></th>
-                <th scope="col"></th>
                 <th scope="col">
                     <select #filtroCategoria="ngModel" class="form-control form-control-sm" ngModel name="filtroCategoria">
                         <option value="">Categoría (Todas)</option>
                         <option *ngFor="let cat of listaCategorias" [value]="cat.nombre">{{ cat.nombre }}</option>
                     </select>
                 </th>
+                <th scope="col"></th>
                 <th scope="col"></th>
                 <th scope="col"></th>
                 <th scope="col"></th>
@@ -62,8 +65,8 @@
                             (producto.categoria.includes(filtroCategoria.value) || filtroCategoria.value=='')"
                 class="table-light" scope>
                     <td>{{ producto.nombre }}</td>
-                    <td>{{ producto.descripcion }}</td>
                     <td>{{ producto.categoria }}</td>
+                    <td>{{ producto.descripcion }}</td>
                     <td>{{ producto.cantidadUnidadPrincipal }} {{ producto.unidadPrincipal }}</td>
                     <td>
                         <div *ngIf="producto.unidadSecundaria != null && producto.cantidadUnidadSecundaria != null; else sinSecundaria">
@@ -215,5 +218,61 @@
             </button>
         </div>
     </div>
+
+    <!-- MODAL DE PDF DE INVENTARIO-->
+    <div class="modal fade" id="pdfInventario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Exportar a PDF</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body" id='elemento-a-exportar'>
+            <div class="row">
+                <h4>Inventario</h4>
+            </div>
+            <div class="row">
+                <!--Tabla de inventario en donde se muestra el inventario general-->
+                <table class="table table-sm letras">
+                    <thead class="thead bg-secondary text-white">
+                    <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Categoría</th>
+                        <th scope="col">Descripción</th>
+                        <th scope="col">Cantidad (Principal)</th>
+                        <th scope="col">Cantidad (Secundaria)</th>
+                    </tr>
+                    </thead>
     
+                    <tbody>
+                    <ng-container *ngFor="let itemPDF of listaProductos">
+                        <tr>
+                        <td>{{ itemPDF.nombre }}</td>
+                        <td>{{ itemPDF.categoria }}</td>
+                        <td>{{ itemPDF.descripcion }}</td>
+                        <td>{{ itemPDF.cantidadUnidadPrincipal }} {{ itemPDF.unidadPrincipal }}</td>
+                        <td>
+                            <div *ngIf="itemPDF.unidadSecundaria != null && itemPDF.ratioUnidades != null; else sinUnidadS">
+                            {{ itemPDF.cantidadUnidadSecundaria }} {{ itemPDF.unidadSecundaria }}
+                            </div>
+                            <!-- NG-TEMPLATE SE USA PARA ENGLOBAR EL BLOQUE ELSE DE UN NGIF -->
+                            <ng-template #sinUnidadS>
+                            N/A
+                            </ng-template>
+                        </td>
+                        </tr>
+                    </ng-container>
+                    </tbody>
+                </table>
+            </div>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" (click)="descargarPDF()" class="btn btn-primary">Exportar</button>
+            </div>
+        </div>
+        </div>
+    </div>
 
